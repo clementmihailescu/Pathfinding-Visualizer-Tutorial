@@ -19,9 +19,10 @@ export default class PathfindingVisualizer extends Component {
     };
   }
 
-  handleOnclickNode() {
-    START_NODE_COL = onclick
-  }
+  // handleOnclickNode() {
+  //   const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+  //   this.setState({grid: newGrid, mouseIsPressed: true});
+  // }
 
   componentDidMount() {
     const grid = getInitialGrid();
@@ -154,16 +155,6 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   const newNode = {
     ...node,
     isWall: !node.isWall,
-  };
-  newGrid[row][col] = newNode;
-  return newGrid;
-};
-const getNewGrid = (grid, row, col) => {
-  const newGrid = grid.slice();
-  const node = newGrid[row][col];
-  const newNode = {
-    ...node,
-    isStart: !node.isStart,
   };
   newGrid[row][col] = newNode;
   return newGrid;
