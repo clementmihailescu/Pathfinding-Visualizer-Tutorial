@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import Node from './Node/Node';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
+
 import './PathfindingVisualizer.css';
 
-const START_NODE_ROW = 10;
-const START_NODE_COL = 15;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 35;
+let START_NODE_ROW = 0;
+let START_NODE_COL = 0;
+const FINISH_NODE_ROW = 19;
+const FINISH_NODE_COL = 49;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -16,6 +17,10 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       mouseIsPressed: false,
     };
+  }
+
+  handleOnclickNode() {
+    START_NODE_COL = onclick
   }
 
   componentDidMount() {
@@ -43,14 +48,14 @@ export default class PathfindingVisualizer extends Component {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 5 * i);
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, 10 * i);
+      }, 5 * i);
     }
   }
 
@@ -60,7 +65,7 @@ export default class PathfindingVisualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
-      }, 50 * i);
+      }, 10 * i);
     }
   }
 
@@ -149,6 +154,16 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   const newNode = {
     ...node,
     isWall: !node.isWall,
+  };
+  newGrid[row][col] = newNode;
+  return newGrid;
+};
+const getNewGrid = (grid, row, col) => {
+  const newGrid = grid.slice();
+  const node = newGrid[row][col];
+  const newNode = {
+    ...node,
+    isStart: !node.isStart,
   };
   newGrid[row][col] = newNode;
   return newGrid;
