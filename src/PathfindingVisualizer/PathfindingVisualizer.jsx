@@ -66,7 +66,7 @@ export default class PathfindingVisualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
-      }, 10 * i);
+      }, 20 * i);
     }
   }
 
@@ -97,6 +97,8 @@ export default class PathfindingVisualizer extends Component {
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>
+                {rowIdx + 1}
+                {space}
                 {row.map((node, nodeIdx) => {
                   const {row, col, isFinish, isStart, isWall} = node;
                   return (
@@ -112,7 +114,8 @@ export default class PathfindingVisualizer extends Component {
                         this.handleMouseEnter(row, col)
                       }
                       onMouseUp={() => this.handleMouseUp()}
-                      row={row}></Node>
+                      row={row}>
+                      </Node>
                   );
                 })}
               </div>
@@ -124,6 +127,7 @@ export default class PathfindingVisualizer extends Component {
   }
 }
 
+const space = " "
 const getInitialGrid = () => {
   const grid = [];
   for (let row = 0; row < 20; row++) {
