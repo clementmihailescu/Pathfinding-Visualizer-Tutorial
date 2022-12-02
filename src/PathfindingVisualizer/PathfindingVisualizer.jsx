@@ -97,8 +97,6 @@ export default class PathfindingVisualizer extends Component {
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>
-                {rowIdx + 1}
-                {space}
                 {row.map((node, nodeIdx) => {
                   const {row, col, isFinish, isStart, isWall} = node;
                   return (
@@ -127,7 +125,7 @@ export default class PathfindingVisualizer extends Component {
   }
 }
 
-const space = " "
+const space = ' '
 const getInitialGrid = () => {
   const grid = [];
   for (let row = 0; row < 20; row++) {
