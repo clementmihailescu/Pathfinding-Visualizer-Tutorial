@@ -10,18 +10,20 @@ let START_NODE_COL = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
 
+
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
     this.state = {
       grid: [],
       mouseIsPressed: false,
-    };
+      startNode: 1,
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // handleOnclickNode() {
-  //   const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-  //   this.setState({grid: newGrid, mouseIsPressed: true});
+  // START_NODE_ROW = () => {
+  //   return this.state.startNode
   // }
 
   componentDidMount() {
@@ -70,6 +72,15 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({startNode: event.target.value});
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    START_NODE_ROW = this.state.startNode
+    // console.log(START_NODE_ROW)
+  }
   visualizeDijkstra() {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
@@ -81,10 +92,8 @@ export default class PathfindingVisualizer extends Component {
   reset() {
     window.location.reload(false);
   }
-
   render() {
     const {grid, mouseIsPressed} = this.state;
-
     return (
       <>
         <button onClick={() => this.visualizeDijkstra()}>
@@ -93,6 +102,13 @@ export default class PathfindingVisualizer extends Component {
         <button onClick={() => this.reset()}>
           Reset
         </button>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" value={this.state.startNode} onChange={this.handleChange} />
+          </label>
+        <input type="submit" value="Submit" />
+        </form>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
@@ -125,7 +141,6 @@ export default class PathfindingVisualizer extends Component {
   }
 }
 
-const space = ' '
 const getInitialGrid = () => {
   const grid = [];
   for (let row = 0; row < 20; row++) {
