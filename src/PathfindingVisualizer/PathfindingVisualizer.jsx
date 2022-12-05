@@ -5,7 +5,7 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-let START_NODE_ROW = 0;
+// let START_NODE_ROW = 0;
 let START_NODE_COL = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
@@ -17,14 +17,14 @@ export default class PathfindingVisualizer extends Component {
     this.state = {
       grid: [],
       mouseIsPressed: false,
-      startNode: 1,
+      startNode: 0,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    createNode = createNode.bind(this);
+    this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
   }
-  // START_NODE_ROW = () => {
-  //   return this.state.startNode
-  // }
+
 
   componentDidMount() {
     const grid = getInitialGrid();
@@ -71,19 +71,18 @@ export default class PathfindingVisualizer extends Component {
       }, 20 * i);
     }
   }
-
   handleChange(event) {
-    this.setState({startNode: event.target.value});
+     this.setState({startNode: event.target.value}, () => {
+      console.log(this.state.startNode);
+    });;
   }
   
   handleSubmit(event) {
     event.preventDefault();
-    START_NODE_ROW = this.state.startNode
-    // console.log(START_NODE_ROW)
   }
   visualizeDijkstra() {
     const {grid} = this.state;
-    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const startNode = grid[this.state.startNode][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
@@ -104,8 +103,8 @@ export default class PathfindingVisualizer extends Component {
         </button>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
-            <input type="text" value={this.state.startNode} onChange={this.handleChange} />
+            X:
+            <input type="text" value={this.state.startNode}  onChange={this.handleChange} />
           </label>
         <input type="submit" value="Submit" />
         </form>
@@ -153,11 +152,12 @@ const getInitialGrid = () => {
   return grid;
 };
 
-const createNode = (col, row) => {
+function createNode(col, row) {
+  console.log(this.state.startNode)
   return {
     col,
     row,
-    isStart: row === START_NODE_ROW && col === START_NODE_COL,
+    isStart: row === this.state.startNode && col === START_NODE_COL,
     isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
     distance: Infinity,
     isVisited: false,
