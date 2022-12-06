@@ -23,6 +23,7 @@ export default class PathfindingVisualizer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     createNode = createNode.bind(this);
     this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
+    console.log("aaaaa",this.state.startNode)
   }
 
 
@@ -73,15 +74,17 @@ export default class PathfindingVisualizer extends Component {
   }
   handleChange(event) {
      this.setState({startNode: event.target.value}, () => {
-      console.log(this.state.startNode);
-    });;
+       console.log(this.state.startNode);
+     });;
   }
+  
   
   handleSubmit(event) {
     event.preventDefault();
   }
   visualizeDijkstra() {
     const {grid} = this.state;
+    console.log("po",this.state.startNode)
     const startNode = grid[this.state.startNode][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
@@ -92,6 +95,7 @@ export default class PathfindingVisualizer extends Component {
     window.location.reload(false);
   }
   render() {
+    console.log("me", this.state.startNode)
     const {grid, mouseIsPressed} = this.state;
     return (
       <>
@@ -153,7 +157,7 @@ const getInitialGrid = () => {
 };
 
 function createNode(col, row) {
-  console.log(this.state.startNode)
+  console.log("moo",this.state.startNode)
   return {
     col,
     row,
