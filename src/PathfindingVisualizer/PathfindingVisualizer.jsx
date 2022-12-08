@@ -5,7 +5,7 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-// let START_NODE_ROW = 0;
+let v;
 let START_NODE_COL = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
@@ -73,9 +73,7 @@ export default class PathfindingVisualizer extends Component {
     }
   }
   handleChange(event) {
-     this.setState({startNode: event.target.value}, () => {
-       console.log(this.state.startNode);
-     });;
+    v = document.getElementById("myInput").value;
   }
   
   
@@ -84,8 +82,8 @@ export default class PathfindingVisualizer extends Component {
   }
   visualizeDijkstra() {
     const {grid} = this.state;
-    console.log("po",this.state.startNode)
-    const startNode = grid[this.state.startNode][START_NODE_COL];
+    // console.log("po",this.state.startNode)
+    const startNode = grid[v][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
@@ -95,7 +93,7 @@ export default class PathfindingVisualizer extends Component {
     window.location.reload(false);
   }
   render() {
-    console.log("me", this.state.startNode)
+    console.log(this.handleChange)
     const {grid, mouseIsPressed} = this.state;
     return (
       <>
@@ -108,7 +106,7 @@ export default class PathfindingVisualizer extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             X:
-            <input type="text" value={this.state.startNode}  onChange={this.handleChange} />
+            <input id="myInput" type="text"   onChange={this.handleChange} />
           </label>
         <input type="submit" value="Submit" />
         </form>
@@ -161,7 +159,7 @@ function createNode(col, row) {
   return {
     col,
     row,
-    isStart: row === this.state.startNode && col === START_NODE_COL,
+    isStart: row === v && col === START_NODE_COL,
     isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
     distance: Infinity,
     isVisited: false,
