@@ -72,8 +72,9 @@ export default class PathfindingVisualizer extends Component {
       }, 20 * i);
     }
   }
-  handleChange(event) {
+  handleChange() {
     v = document.getElementById("myInput").value;
+    this.setState({startNode: v})
   }
   
   
@@ -81,9 +82,10 @@ export default class PathfindingVisualizer extends Component {
     event.preventDefault();
   }
   visualizeDijkstra() {
+    v = document.getElementById("myInput").value;
     const {grid} = this.state;
     // console.log("po",this.state.startNode)
-    const startNode = grid[v][START_NODE_COL];
+    const startNode = grid[this.state.startNode][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
@@ -93,13 +95,13 @@ export default class PathfindingVisualizer extends Component {
     window.location.reload(false);
   }
   render() {
-    console.log(this.handleChange)
     const {grid, mouseIsPressed} = this.state;
     return (
       <>
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
+        <button onClick={() => createNode()}> Create</button>
         <button onClick={() => this.reset()}>
           Reset
         </button>
@@ -155,11 +157,10 @@ const getInitialGrid = () => {
 };
 
 function createNode(col, row) {
-  console.log("moo",this.state.startNode)
   return {
     col,
     row,
-    isStart: row === v && col === START_NODE_COL,
+    isStart: row === this.state.startNode && col === START_NODE_COL,
     isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
     distance: Infinity,
     isVisited: false,
