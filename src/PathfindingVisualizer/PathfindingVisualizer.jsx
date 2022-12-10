@@ -23,7 +23,6 @@ export default class PathfindingVisualizer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     createNode = createNode.bind(this);
     this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
-    console.log("aaaaa",this.state.startNode)
   }
 
 
@@ -74,7 +73,9 @@ export default class PathfindingVisualizer extends Component {
   }
   handleChange() {
     v = document.getElementById("myInput").value;
-    this.setState({startNode: v})
+    this.setState({startNode: v, grid: getInitialGrid()}, () => 
+    console.log(this.state.grid)
+    )
   }
   
   
@@ -100,7 +101,7 @@ export default class PathfindingVisualizer extends Component {
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
-        <button onClick={getInitialGrid}> Create</button>
+        {/* <button onClick={() => getInitialGrid()}> Create</button> */}
         <button onClick={() => this.reset()}>
           Reset
         </button>
