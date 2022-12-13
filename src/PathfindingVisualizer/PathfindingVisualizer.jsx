@@ -20,7 +20,6 @@ export default class PathfindingVisualizer extends Component {
       startNode: 0,
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     createNode = createNode.bind(this);
     this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
   }
@@ -73,15 +72,15 @@ export default class PathfindingVisualizer extends Component {
   }
   handleChange() {
     v = document.getElementById("myInput").value;
-    this.setState({startNode: v, grid: getInitialGrid()}, () => 
+    this.setState({startNode: v, grid:getInitialGrid() }, () => 
+    console.log("king",this.state.startNode),
     console.log(this.state.grid)
     )
+    // this.setState({grid: getInitialGrid()})
   }
+
   
-  
-  handleSubmit(event) {
-    // event.preventDefault();
-  }
+
   visualizeDijkstra() {
     const {grid} = this.state;
     // console.log("po",this.state.startNode)
@@ -91,7 +90,7 @@ export default class PathfindingVisualizer extends Component {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
-  reset() {
+   reset() {
     window.location.reload(false);
   }
   render() {
@@ -105,12 +104,12 @@ export default class PathfindingVisualizer extends Component {
         <button onClick={() => this.reset()}>
           Reset
         </button>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label>
             X:
             <input id="myInput" type="text" onChange={this.handleChange} />
           </label>
-        <input type="submit" value="Submit" />
+        {/* <input type="submit" value="Submit" /> */}
         </form>
         <div className="grid">
           {grid.map((row, rowIdx) => {
@@ -156,8 +155,8 @@ const getInitialGrid = () => {
   return grid;
 };
 
+
 function createNode(col, row) {
-  console.log("king",this.state.startNode)
   return {
     col,
     row,
