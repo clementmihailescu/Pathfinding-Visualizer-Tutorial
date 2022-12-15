@@ -5,7 +5,6 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-let v;
 let START_NODE_COL = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
@@ -71,11 +70,12 @@ export default class PathfindingVisualizer extends Component {
     }
   }
   handleChange() {
-    v = document.getElementById("myInput").value;
-    this.setState({startNode: v, grid:getInitialGrid() }, () => 
+    const v = document.getElementById("myInput").value;
+    this.setState({startNode: v}, () => 
+    this.setState({grid: getNewGrid()}),
     console.log("king",this.state.startNode),
-    console.log(this.state.grid)
     )
+    console.log(getNewGrid())
     // this.setState({grid: getInitialGrid()})
   }
 
@@ -168,6 +168,10 @@ function createNode(col, row) {
     previousNode: null,
   };
 };
+
+
+
+
 
 const getNewGridWithWallToggled = (grid, row, col) => {
   const newGrid = grid.slice();
