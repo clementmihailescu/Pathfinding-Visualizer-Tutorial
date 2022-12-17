@@ -72,11 +72,10 @@ export default class PathfindingVisualizer extends Component {
   handleChange() {
     const v = document.getElementById("myInput").value;
     this.setState({startNode: v}, () => 
-    this.setState({grid: getNewGrid()}),
-    console.log("king",this.state.startNode),
-    )
-    console.log(getNewGrid())
-    // this.setState({grid: getInitialGrid()})
+    createNode(this.state.startNode, 0).isStart = true,
+    );
+    getInitialGrid()
+    console.log(getInitialGrid())
   }
 
   
@@ -107,7 +106,7 @@ export default class PathfindingVisualizer extends Component {
         <form>
           <label>
             X:
-            <input id="myInput" type="text" onChange={this.handleChange} />
+            <input id="myInput" type="text" onChange={this.handleChange}/>
           </label>
         {/* <input type="submit" value="Submit" /> */}
         </form>
@@ -168,6 +167,7 @@ function createNode(col, row) {
     previousNode: null,
   };
 };
+
 
 
 
