@@ -71,11 +71,13 @@ export default class PathfindingVisualizer extends Component {
   }
   handleChange() {
     const v = document.getElementById("myInput").value;
-    this.setState({startNode: v}, () => 
-    createNode(this.state.startNode, 0).isStart = true,
-    );
-    getInitialGrid()
-    console.log(getInitialGrid())
+    const {grid} = this.state
+    grid[this.state.startNode][START_NODE_COL].isStart = true
+    this.setState({startNode: Number(v), grid: getInitialGrid()})
+    // this.setState({grid: getInitialGrid()}, () =>
+    //   console.log("new", this.state.grid)
+    //   // getInitialGrid()
+    //   ) 
   }
 
   
