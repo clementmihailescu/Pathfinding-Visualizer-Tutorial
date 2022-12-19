@@ -70,21 +70,21 @@ export default class PathfindingVisualizer extends Component {
     }
   }
   handleChange() {
-    const v = document.getElementById("myInput").value;
+    let v = (document.getElementById("myInput").value);
+    if ( isNaN(v) === true || v > 19) {
+      return v = 0;
+    }
     const {grid} = this.state
-    grid[this.state.startNode][START_NODE_COL].isStart = true
-    this.setState({startNode: Number(v), grid: getInitialGrid()})
-    // this.setState({grid: getInitialGrid()}, () =>
-    //   console.log("new", this.state.grid)
-    //   // getInitialGrid()
-    //   ) 
+    this.setState({startNode: Number(v)}, () =>
+      grid[this.state.startNode][START_NODE_COL].isStart = true &&
+      this.setState({grid: getInitialGrid()})
+    )
   }
 
   
 
   visualizeDijkstra() {
     const {grid} = this.state;
-    // console.log("po",this.state.startNode)
     const startNode = grid[this.state.startNode][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
@@ -101,7 +101,6 @@ export default class PathfindingVisualizer extends Component {
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
-        {/* <button onClick={() => getInitialGrid()}> Create</button> */}
         <button onClick={() => this.reset()}>
           Reset
         </button>
@@ -110,7 +109,6 @@ export default class PathfindingVisualizer extends Component {
             X:
             <input id="myInput" type="text" onChange={this.handleChange}/>
           </label>
-        {/* <input type="submit" value="Submit" /> */}
         </form>
         <div className="grid">
           {grid.map((row, rowIdx) => {
