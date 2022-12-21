@@ -5,7 +5,7 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-let START_NODE_COL = 0;
+let startNodeY = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
 
@@ -16,7 +16,8 @@ export default class PathfindingVisualizer extends Component {
     this.state = {
       grid: [],
       mouseIsPressed: false,
-      startNode: 0,
+      startNodeY: 0,
+      startNodeX:0,
     }
     this.handleChange = this.handleChange.bind(this);
     createNode = createNode.bind(this);
@@ -70,13 +71,17 @@ export default class PathfindingVisualizer extends Component {
     }
   }
   handleChange() {
-    let v = (document.getElementById("myInput").value);
-    if ( isNaN(v) === true || v > 19) {
-      return v = 0;
+    let inputX = (document.getElementById("myInputX").value);
+    let inputY = (document.getElementById("myInputY").value);
+    if ( isNaN(inputX) === true || inputX > 49 || inputX < 0) {
+      return inputX = 0;
+    }
+    if ( isNaN(inputY) === true || inputY > 19 || inputY < 0) {
+      return inputY = 0;
     }
     const {grid} = this.state
-    this.setState({startNode: Number(v)}, () =>
-      grid[this.state.startNode][START_NODE_COL].isStart = true &&
+    this.setState({startNodeY: Number(inputY), startNodeX: Number(inputX)}, () =>
+      grid[this.state.startNodeY][this.state.startNodeX].isStart = true &&
       this.setState({grid: getInitialGrid()})
     )
   }
@@ -85,7 +90,7 @@ export default class PathfindingVisualizer extends Component {
 
   visualizeDijkstra() {
     const {grid} = this.state;
-    const startNode = grid[this.state.startNode][START_NODE_COL];
+    const startNode = grid[this.state.startNodeY][this.state.startNodeX];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
@@ -107,7 +112,13 @@ export default class PathfindingVisualizer extends Component {
         <form>
           <label>
             X:
-            <input id="myInput" type="text" onChange={this.handleChange}/>
+            <input id="myInputX" type="text" onChange={this.handleChange}/>
+          </label>
+        </form>
+        <form>
+          <label>
+            Y:
+            <input id="myInputY" type="text" onChange={this.handleChange}/>
           </label>
         </form>
         <div className="grid">
@@ -159,7 +170,7 @@ function createNode(col, row) {
   return {
     col,
     row,
-    isStart: row === this.state.startNode && col === START_NODE_COL,
+    isStart: row === this.state.startNodeY && col === this.state.startNodeX,
     isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
     distance: Infinity,
     isVisited: false,
