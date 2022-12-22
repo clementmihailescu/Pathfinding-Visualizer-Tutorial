@@ -5,7 +5,6 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-let startNodeY = 0;
 const FINISH_NODE_ROW = 19;
 const FINISH_NODE_COL = 49;
 
@@ -109,18 +108,20 @@ export default class PathfindingVisualizer extends Component {
         <button onClick={() => this.reset()}>
           Reset
         </button>
-        <form>
-          <label>
-            X:
-            <input id="myInputX" type="text" onChange={this.handleChange}/>
-          </label>
-        </form>
-        <form>
-          <label>
-            Y:
-            <input id="myInputY" type="text" onChange={this.handleChange}/>
-          </label>
-        </form>
+        <div className='inlineInput'>
+          <form>
+            <label className='labelX'>
+              X:
+              <input id="myInputX" type="text" onChange={this.handleChange}/>
+            </label>
+          </form>
+          <form>
+            <label className='labelY'>
+              Y:
+              <input id="myInputY" type="text" onChange={this.handleChange}/>
+            </label>
+          </form>     
+        </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
