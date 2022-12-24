@@ -5,9 +5,6 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-const FINISH_NODE_ROW = 19;
-const FINISH_NODE_COL = 49;
-
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -17,6 +14,8 @@ export default class PathfindingVisualizer extends Component {
       mouseIsPressed: false,
       startNodeY: 0,
       startNodeX:0,
+      endNodeY: 19,
+      endNodeX: 49,
     }
     this.handleChange = this.handleChange.bind(this);
     createNode = createNode.bind(this);
@@ -70,19 +69,33 @@ export default class PathfindingVisualizer extends Component {
     }
   }
   handleChange() {
-    let inputX = (document.getElementById("myInputX").value);
-    let inputY = (document.getElementById("myInputY").value);
-    if ( isNaN(inputX) === true || inputX > 49 || inputX < 0) {
-      return inputX = 0;
+    let startPutX = (document.getElementById("myStartInputX").value);
+    let startPutY = (document.getElementById("myStartInputY").value);
+    let endPutX = (document.getElementById("myEndInputX").value);
+    let endPutY = (document.getElementById("myEndInputY").value);
+    if ( isNaN(startPutX) === true || startPutX > 49 || startPutX < 0) {
+      return startPutX = 0;
     }
-    if ( isNaN(inputY) === true || inputY > 19 || inputY < 0) {
-      return inputY = 0;
+    if ( isNaN(startPutY) === true || startPutY > 19 || startPutY < 0) {
+      return startPutY = 0;
+    }
+    if ( isNaN(endPutX) === true || endPutX > 49 || endPutX < 0) {
+      return endPutX = 49;
+    }
+    if ( isNaN(endPutY) === true || endPutY > 19 || endPutY < 0) {
+      return endPutY = 19;
     }
     const {grid} = this.state
-    this.setState({startNodeY: Number(inputY), startNodeX: Number(inputX)}, () =>
+    this.setState({startNodeY: Number(startPutY), startNodeX: Number(startPutX)}, () =>
       grid[this.state.startNodeY][this.state.startNodeX].isStart = true &&
+      // grid[this.state.endNodeY][this.state.endNodeX].isFinish &&
       this.setState({grid: getInitialGrid()})
     )
+    this.setState({endNodeY: Number(endPutY), endNodeX: Number(endPutX)}, () =>
+    grid[this.state.endNodeY][this.state.endNodeX].isFinish = true &&
+    // grid[this.state.endNodeY][this.state.endNodeX].isFinish &&
+    this.setState({grid: getInitialGrid()})
+  )
   }
 
   
@@ -90,7 +103,7 @@ export default class PathfindingVisualizer extends Component {
   visualizeDijkstra() {
     const {grid} = this.state;
     const startNode = grid[this.state.startNodeY][this.state.startNodeX];
-    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const finishNode = grid[this.state.endNodeY][this.state.endNodeX];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
@@ -109,19 +122,35 @@ export default class PathfindingVisualizer extends Component {
           Reset
         </button>
         <div className='inlineInput'>
-          <form>
-            <label className='labelX'>
-              X:
-              <input id="myInputX" type="text" onChange={this.handleChange}/>
-            </label>
-          </form>
-          <form>
-            <label className='labelY'>
-              Y:
-              <input id="myInputY" type="text" onChange={this.handleChange}/>
-            </label>
-          </form>     
-        </div>
+          <div>
+            <form>
+              <label className='labelStartX'>
+                Start X: 
+                <input id="myStartInputX" type="text" onChange={this.handleChange}/>
+              </label>
+            </form>
+            <form>
+              <label className='labelStartY'>
+                Start Y: 
+                <input id="myStartInputY" type="text" onChange={this.handleChange}/>
+              </label>
+            </form>  
+          </div> 
+          <div>
+            <form>
+              <label className='labelX'>
+                End X: 
+                <input id="myEndInputX" type="text" onChange={this.handleChange}/>
+              </label>
+            </form>
+            <form>
+              <label className='labelY'>
+                End Y: 
+                <input id="myEndInputY" type="text" onChange={this.handleChange}/>
+              </label>
+            </form>
+          </div>
+         </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
@@ -172,7 +201,7 @@ function createNode(col, row) {
     col,
     row,
     isStart: row === this.state.startNodeY && col === this.state.startNodeX,
-    isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
+    isFinish: row === this.state.endNodeY && col === this.state.endNodeX,
     distance: Infinity,
     isVisited: false,
     isWall: false,

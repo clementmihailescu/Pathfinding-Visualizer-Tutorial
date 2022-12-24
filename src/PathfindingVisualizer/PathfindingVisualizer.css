@@ -1,5 +1,5 @@
 .grid {
-  margin: 35px 0 0;
+  margin: 20px 0 0;
 }
 
 .inlineInput {
@@ -8,6 +8,9 @@
   margin: 1em;
 }
 
-.labelY {
-  margin-left: 1em;
+.labelStartY {
+  margin-right: 0.3em;
+}
+.labelStartX {
+  margin-right: 0.3em;
 }

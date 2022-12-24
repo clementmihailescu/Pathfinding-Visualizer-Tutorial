@@ -64,16 +64,16 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-color: black;
+    background-color: turquoise;
   }
 
   50% {
     transform: scale(1.2);
-    background-color: black;
+    background-color: turquoise;
   }
 
   100% {
     transform: scale(1);
-    background-color: black;
+    background-color: turquoise;
   }
 }
