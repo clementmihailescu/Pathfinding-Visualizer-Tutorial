@@ -20,6 +20,7 @@ export default class PathfindingVisualizer extends Component {
     this.handleChange = this.handleChange.bind(this);
     createNode = createNode.bind(this);
     this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
+    this.handleEndChange = this.handleEndChange.bind(this)
   }
 
 
@@ -68,35 +69,43 @@ export default class PathfindingVisualizer extends Component {
       }, 20 * i);
     }
   }
+
   handleChange() {
-    let startPutX = (document.getElementById("myStartInputX").value);
-    let startPutY = (document.getElementById("myStartInputY").value);
-    let endPutX = (document.getElementById("myEndInputX").value);
-    let endPutY = (document.getElementById("myEndInputY").value);
+    let startPutX = Math.round(Number(document.getElementById("myStartInputX").value));
+    let startPutY = Math.round(Number((document.getElementById("myStartInputY").value)));
+
     if ( isNaN(startPutX) === true || startPutX > 49 || startPutX < 0) {
-      return startPutX = 0;
+       startPutX = 0;
     }
     if ( isNaN(startPutY) === true || startPutY > 19 || startPutY < 0) {
-      return startPutY = 0;
-    }
-    if ( isNaN(endPutX) === true || endPutX > 49 || endPutX < 0) {
-      return endPutX = 49;
-    }
-    if ( isNaN(endPutY) === true || endPutY > 19 || endPutY < 0) {
-      return endPutY = 19;
+       startPutY = 0;
     }
     const {grid} = this.state
-    this.setState({startNodeY: Number(startPutY), startNodeX: Number(startPutX)}, () =>
+    this.setState({startNodeY: startPutY, startNodeX: startPutX}, () =>
       grid[this.state.startNodeY][this.state.startNodeX].isStart = true &&
-      // grid[this.state.endNodeY][this.state.endNodeX].isFinish &&
+      this.setState({grid: getInitialGrid()}) &&
+      console.log(this.state.endNodeY)
+    )
+  }
+
+  handleEndChange() {
+    let endPutX = Math.round(Number((document.getElementById("myEndInputX").value)));
+    let endPutY = Math.round(Number((document.getElementById("myEndInputY").value)));
+    console.log(endPutY)
+    
+    if (isNaN(endPutX) === true || endPutX > 49 || endPutX < 0 || !endPutX) {
+       endPutX = 49;
+    }
+    if (isNaN(endPutY) === true || endPutY > 19 || endPutY < 0 || !endPutY) {
+      endPutY = 19;
+    }
+    const {grid} = this.state
+    this.setState({endNodeY: endPutY, endNodeX: endPutX}, () =>
+      grid[this.state.endNodeY][this.state.endNodeX].isFinish = true &&
       this.setState({grid: getInitialGrid()})
     )
-    this.setState({endNodeY: Number(endPutY), endNodeX: Number(endPutX)}, () =>
-    grid[this.state.endNodeY][this.state.endNodeX].isFinish = true &&
-    // grid[this.state.endNodeY][this.state.endNodeX].isFinish &&
-    this.setState({grid: getInitialGrid()})
-  )
   }
+
 
   
 
@@ -140,13 +149,13 @@ export default class PathfindingVisualizer extends Component {
             <form>
               <label className='labelX'>
                 End X: 
-                <input id="myEndInputX" type="text" onChange={this.handleChange}/>
+                <input id="myEndInputX" type="text" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
                 End Y: 
-                <input id="myEndInputY" type="text" onChange={this.handleChange}/>
+                <input id="myEndInputY" type="text" onChange={this.handleEndChange}/>
               </label>
             </form>
           </div>
