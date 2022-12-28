@@ -89,14 +89,16 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleEndChange() {
+    document.getElementById("myEndInputX").defaultValue = "49";
+    document.getElementById("myEndInputY").defaultValue = "19";
     let endPutX = Math.round(Number((document.getElementById("myEndInputX").value)));
     let endPutY = Math.round(Number((document.getElementById("myEndInputY").value)));
     console.log(endPutY)
     
-    if (isNaN(endPutX) === true || endPutX > 49 || endPutX < 0 || !endPutX) {
+    if (isNaN(endPutX) === true || endPutX > 49 || endPutX < 0) {
        endPutX = 49;
     }
-    if (isNaN(endPutY) === true || endPutY > 19 || endPutY < 0 || !endPutY) {
+    if (isNaN(endPutY) === true || endPutY > 19 || endPutY < 0) {
       endPutY = 19;
     }
     const {grid} = this.state
@@ -149,7 +151,7 @@ export default class PathfindingVisualizer extends Component {
             <form>
               <label className='labelX'>
                 End X: 
-                <input id="myEndInputX" type="text" onChange={this. handleEndChange}/>
+                <input  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
