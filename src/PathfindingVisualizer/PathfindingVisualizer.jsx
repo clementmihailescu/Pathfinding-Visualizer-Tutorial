@@ -126,24 +126,18 @@ export default class PathfindingVisualizer extends Component {
     const {grid, mouseIsPressed} = this.state;
     return (
       <>
-        <button onClick={() => this.visualizeDijkstra()}>
-          Visualize Dijkstra's Algorithm
-        </button>
-        <button onClick={() => this.reset()}>
-          Reset
-        </button>
         <div className='inlineInput'>
           <div>
             <form>
               <label className='labelStartX'>
                 Start X: 
-                <input id="myStartInputX" type="text" onChange={this.handleChange}/>
+                <input className='inputField' id="myStartInputX" type="text" onChange={this.handleChange}/>
               </label>
             </form>
             <form>
               <label className='labelStartY'>
                 Start Y: 
-                <input id="myStartInputY" type="text" onChange={this.handleChange}/>
+                <input className='inputField' id="myStartInputY" type="text" onChange={this.handleChange}/>
               </label>
             </form>  
           </div> 
@@ -151,17 +145,25 @@ export default class PathfindingVisualizer extends Component {
             <form>
               <label className='labelX'>
                 End X: 
-                <input  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
+                <input className='inputField'  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
                 End Y: 
-                <input id="myEndInputY" type="text" onChange={this.handleEndChange}/>
+                <input className='inputField' id="myEndInputY" type="text" onChange={this.handleEndChange}/>
               </label>
             </form>
           </div>
          </div>
+         <div className='buttons'>
+          <button className='viz' onClick={() => this.visualizeDijkstra()}>
+            Visualize Dijkstra's Algorithm
+          </button>
+          <button className='reload'  onClick={() => this.reset()}>
+            Reset
+          </button>
+        </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (

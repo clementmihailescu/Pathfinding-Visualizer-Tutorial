@@ -1,5 +1,6 @@
+
 .grid {
-  margin: 20px 0 0;
+  margin: 12px 0 0;
 }
 
 .inlineInput {
@@ -14,3 +15,27 @@
 .labelStartX {
   margin-right: 0.3em;
 }
+
+.inputField{
+  border-radius: 0.5em;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.viz{
+  margin-left: 47em;
+  background-color: white;
+  border-radius: 0.5em;
+}
+
+.reload {
+  margin-right: 30em;
+  color: red;
+  background-color: white;
+  border-radius: 0.5em;
+}
+
+
