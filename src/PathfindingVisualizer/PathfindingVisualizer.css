@@ -1,6 +1,6 @@
 
 .grid {
-  margin: 12px 0 0;
+  /* margin: 3px 0 0; */
 }
 
 .inlineInput {
@@ -23,19 +23,25 @@
 .buttons{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1em;
 }
 
 .viz{
-  margin-left: 47em;
-  background-color: white;
+  color: white;
+  border-color: white;
+  background-color: black;
   border-radius: 0.5em;
 }
 
 .reload {
-  margin-right: 30em;
-  color: red;
-  background-color: white;
+  border-color: white;
+  color: white;
+  background-color: black;
   border-radius: 0.5em;
 }
 
+.Nav {
+  border-bottom: 2px solid black;
+  background-color: black;
+}
 

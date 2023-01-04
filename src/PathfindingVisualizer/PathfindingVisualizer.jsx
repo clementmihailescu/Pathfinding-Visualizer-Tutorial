@@ -126,7 +126,17 @@ export default class PathfindingVisualizer extends Component {
     const {grid, mouseIsPressed} = this.state;
     return (
       <>
-        <div className='inlineInput'>
+      <div className='Nav'>
+         <div className='buttons'>
+          <button className='viz' onClick={() => this.visualizeDijkstra()}>
+           <h5>Visualize Dijkstra's</h5> 
+          </button>
+          <button className='reload'  onClick={() => this.reset()}>
+            Reset
+          </button>
+        </div>
+        </div>
+      <div className='inlineInput'>
           <div>
             <form>
               <label className='labelStartX'>
@@ -156,14 +166,6 @@ export default class PathfindingVisualizer extends Component {
             </form>
           </div>
          </div>
-         <div className='buttons'>
-          <button className='viz' onClick={() => this.visualizeDijkstra()}>
-            Visualize Dijkstra's Algorithm
-          </button>
-          <button className='reload'  onClick={() => this.reset()}>
-            Reset
-          </button>
-        </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
