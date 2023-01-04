@@ -127,17 +127,18 @@ export default class PathfindingVisualizer extends Component {
     return (
       <>
       <div className='Nav'>
-         <div className='buttons'>
+        <div className='buttons'>
+          <img  src={require('../docs/Logo.png')} alt="" width = "100" height = "auto"/>
           <button className='viz' onClick={() => this.visualizeDijkstra()}>
-           <h5>Visualize Dijkstra's</h5> 
+           Visualize Dijkstra's 
           </button>
           <button className='reload'  onClick={() => this.reset()}>
             Reset
           </button>
         </div>
-        </div>
+      </div>
       <div className='inlineInput'>
-          <div>
+          {/* <div> */}
             <form>
               <label className='labelStartX'>
                 Start X: 
@@ -150,8 +151,8 @@ export default class PathfindingVisualizer extends Component {
                 <input className='inputField' id="myStartInputY" type="text" onChange={this.handleChange}/>
               </label>
             </form>  
-          </div> 
-          <div>
+          {/* </div>  */}
+          {/* <div> */}
             <form>
               <label className='labelX'>
                 End X: 
@@ -164,7 +165,7 @@ export default class PathfindingVisualizer extends Component {
                 <input className='inputField' id="myEndInputY" type="text" onChange={this.handleEndChange}/>
               </label>
             </form>
-          </div>
+          {/* </div> */}
          </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
