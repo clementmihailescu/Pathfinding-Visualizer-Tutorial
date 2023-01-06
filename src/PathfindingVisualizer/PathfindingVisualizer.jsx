@@ -138,34 +138,30 @@ export default class PathfindingVisualizer extends Component {
         </div>
       </div>
       <div className='inlineInput'>
-          {/* <div> */}
             <form>
               <label className='labelStartX'>
-                Start X: 
-                <input className='inputField' id="myStartInputX" type="text" onChange={this.handleChange}/>
+                X:
+                <input id="myStartInputX" type="text" onChange={this.handleChange}/>
               </label>
             </form>
             <form>
               <label className='labelStartY'>
-                Start Y: 
-                <input className='inputField' id="myStartInputY" type="text" onChange={this.handleChange}/>
+                 Y: 
+                <input  id="myStartInputY" type="text" onChange={this.handleChange}/>
               </label>
             </form>  
-          {/* </div>  */}
-          {/* <div> */}
             <form>
               <label className='labelX'>
-                End X: 
-                <input className='inputField'  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
+                 X: 
+                <input  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
-                End Y: 
-                <input className='inputField' id="myEndInputY" type="text" onChange={this.handleEndChange}/>
+                 Y: 
+                <input  id="myEndInputY" type="text" onChange={this.handleEndChange}/>
               </label>
             </form>
-          {/* </div> */}
          </div>
         <div className="grid">
           {grid.map((row, rowIdx) => {
