@@ -16,6 +16,7 @@ export default class PathfindingVisualizer extends Component {
       startNodeX:0,
       endNodeY: 19,
       endNodeX: 49,
+      isDisabled: false
     }
     this.handleChange = this.handleChange.bind(this);
     createNode = createNode.bind(this);
@@ -89,7 +90,6 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleEndChange() {
-    window.location.reload(true)   
     document.getElementById("myEndInputX").defaultValue = "49";
     document.getElementById("myEndInputY").defaultValue = "19";
     let endPutX = Math.round(Number((document.getElementById("myEndInputX").value)));
@@ -113,6 +113,7 @@ export default class PathfindingVisualizer extends Component {
   
 
   visualizeDijkstra() {
+    this.setState({isDisabled: true})
     const {grid} = this.state;
     const startNode = grid[this.state.startNodeY][this.state.startNodeX];
     const finishNode = grid[this.state.endNodeY][this.state.endNodeX];
@@ -143,13 +144,13 @@ export default class PathfindingVisualizer extends Component {
             <form className=''>
               <label className='labelStartX'>
                 {/* X: */}
-                <input placeholder='X' id="myStartInputX" type="text" onChange={this.handleChange}/>
+                <input disabled={this.state.isDisabled} placeholder='X' id="myStartInputX" type="text" onChange={this.handleChange}/>
               </label>
             </form>
             <form>
               <label className='labelStartY'>
                  {/* Y:  */}
-                <input placeholder='Y'  id="myStartInputY" type="text" onChange={this.handleChange}/>
+                <input disabled={this.state.isDisabled} placeholder='Y'  id="myStartInputY" type="text" onChange={this.handleChange}/>
               </label>
             </form> 
         </div> 
@@ -157,13 +158,13 @@ export default class PathfindingVisualizer extends Component {
             <form>
               <label className='labelX'>
                  {/* X:  */}
-                <input placeholder='X'  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
+                <input disabled={this.state.isDisabled} placeholder='X'  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
                  {/* Y:  */}
-                <input placeholder='Y'  id="myEndInputY" type="text" onChange={this.handleEndChange}/>
+                <input disabled={this.state.isDisabled} placeholder='Y'  id="myEndInputY" type="text" onChange={this.handleEndChange}/>
               </label>
             </form>
           </div>

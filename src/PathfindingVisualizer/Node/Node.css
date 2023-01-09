@@ -28,22 +28,22 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
-    background-color: #f0ebe3;
+    background-color: #faf0e6;
     border-radius: 100%;
   }
 
   50% {
-    background-color: #e4dccf;
+    background-color: #fff0db;
   }
 
   75% {
     transform: scale(1.2);
-    background-color: #7d9d9c;
+    background-color: #eed9c4;
   }
 
   100% {
     transform: scale(1);
-    background-color: #576f72;
+    background-color: #e4d5b7;
   }
 }
 
@@ -65,16 +65,17 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-color: #244246;
+    background-color: #f9d4b4
+    ;
   }
 
   50% {
     transform: scale(1.2);
-    background-color: #30595e;
+    background-color: #9c7d5c;
   }
 
   100% {
     transform: scale(1);
-    background-color: #3c6f76;
+    background-color: #dbbc8c;
   }
 }
