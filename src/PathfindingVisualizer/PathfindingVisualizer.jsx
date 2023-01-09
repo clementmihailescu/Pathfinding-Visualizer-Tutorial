@@ -89,6 +89,7 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleEndChange() {
+    window.location.reload(true)   
     document.getElementById("myEndInputX").defaultValue = "49";
     document.getElementById("myEndInputY").defaultValue = "19";
     let endPutX = Math.round(Number((document.getElementById("myEndInputX").value)));
@@ -128,7 +129,7 @@ export default class PathfindingVisualizer extends Component {
       <>
       <div className='Nav'>
         <div className='buttons'>
-          <img  src={require('../docs/Logo.png')} alt="" width = "100" height = "auto"/>
+          <img  src={require('../docs/Greygo.png')} alt="" width = "80" height = "auto"/>
           <button className='viz' onClick={() => this.visualizeDijkstra()}>
            Visualize Dijkstra's 
           </button>
@@ -139,7 +140,7 @@ export default class PathfindingVisualizer extends Component {
       </div>
       <div className='inlineInput'>
         <div className='startAxis'>
-            <form>
+            <form className=''>
               <label className='labelStartX'>
                 {/* X: */}
                 <input placeholder='X' id="myStartInputX" type="text" onChange={this.handleChange}/>
@@ -170,7 +171,7 @@ export default class PathfindingVisualizer extends Component {
         <div className="grid">
           {grid.map((row, rowIdx) => {
             return (
-              <div key={rowIdx}>
+              <div className='row' key={rowIdx}>
                 {row.map((node, nodeIdx) => {
                   const {row, col, isFinish, isStart, isWall} = node;
                   return (
