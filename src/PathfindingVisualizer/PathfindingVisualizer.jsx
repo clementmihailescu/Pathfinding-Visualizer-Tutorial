@@ -96,10 +96,10 @@ export default class PathfindingVisualizer extends Component {
     let endPutY = Math.round(Number((document.getElementById("myEndInputY").value)));
     console.log(endPutY)
     
-    if (isNaN(endPutX) === true || endPutX > 49 || endPutX < 0) {
+    if (endPutX > 49 || endPutX < 0) {
        endPutX = 49;
     }
-    if (isNaN(endPutY) === true || endPutY > 19 || endPutY < 0) {
+    if ( endPutY > 19 || endPutY < 0) {
       endPutY = 19;
     }
     const {grid} = this.state
@@ -144,13 +144,13 @@ export default class PathfindingVisualizer extends Component {
             <form className=''>
               <label className='labelStartX'>
                 {/* X: */}
-                <input disabled={this.state.isDisabled} placeholder='X' id="myStartInputX" type="text" onChange={this.handleChange}/>
+                <input  disabled={this.state.isDisabled} placeholder='X' id="myStartInputX" type='number' max="49" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleChange}/>
               </label>
             </form>
             <form>
               <label className='labelStartY'>
                  {/* Y:  */}
-                <input disabled={this.state.isDisabled} placeholder='Y'  id="myStartInputY" type="text" onChange={this.handleChange}/>
+                <input disabled={this.state.isDisabled} placeholder='Y'  id="myStartInputY" type='number' max="19" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleChange}/>
               </label>
             </form> 
         </div> 
@@ -158,13 +158,13 @@ export default class PathfindingVisualizer extends Component {
             <form>
               <label className='labelX'>
                  {/* X:  */}
-                <input disabled={this.state.isDisabled} placeholder='X'  id="myEndInputX" type="text" onChange={this. handleEndChange}/>
+                <input disabled={this.state.isDisabled} placeholder='X'  id="myEndInputX" type='number' max="49" min="0" onkeyup="if(value<0)value=0;" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
                  {/* Y:  */}
-                <input disabled={this.state.isDisabled} placeholder='Y'  id="myEndInputY" type="text" onChange={this.handleEndChange}/>
+                <input disabled={this.state.isDisabled} placeholder='Y'  id="myEndInputY" type='number' max="19" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleEndChange}/>
               </label>
             </form>
           </div>

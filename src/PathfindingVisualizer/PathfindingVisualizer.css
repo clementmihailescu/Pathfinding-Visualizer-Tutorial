@@ -30,7 +30,6 @@
 input{
   margin-left: 0.3em;
   border-radius: 0.5em;
-  width: 20%;
 }
 
 .buttons{
@@ -101,14 +100,16 @@ input{
 .startAxis{
   display: flex;
   flex-direction: row;
+  width: 9%;
 }
 .endAxis {
   display: flex;
-  flex-direction: row;
+  flex-direction: row
+
 }
 
 form{
-  margin: 0.3em -2em 0.3em;
+  margin: 0.3em 0em 0.3em;
 }
 
 img{
@@ -120,3 +121,42 @@ img{
   margin-bottom: -0.1em;
 }
 
+#myStartInputX:disabled {
+  background-color: green;
+  color: linen;
+  opacity: 1;
+}
+
+#myStartInputY:disabled {
+  background-color: green;
+  color: linen;
+  opacity: 1;
+}
+
+#myEndInputX:disabled {
+  background-color: red;
+  color: linen;
+  opacity: 1;
+}
+
+#myEndInputY:disabled {
+  background-color: red;
+  color: linen;
+  opacity: 1;
+}
+
+#myEndInputY:disabled::-webkit-input-placeholder  {
+  color: linen;
+}
+
+#myEndInputX:disabled::-webkit-input-placeholder  {
+  color: linen;
+}
+
+#myStartInputY:disabled::-webkit-input-placeholder  {
+  color: linen;
+}
+
+#myStartInputX:disabled::-webkit-input-placeholder  {
+  color: linen;
+}
