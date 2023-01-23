@@ -146,17 +146,17 @@ img{
 }
 
 #myEndInputY:disabled::-webkit-input-placeholder  {
-  color: linen;
+  color: red;
 }
 
 #myEndInputX:disabled::-webkit-input-placeholder  {
-  color: linen;
+  color: red;
 }
 
 #myStartInputY:disabled::-webkit-input-placeholder  {
-  color: linen;
+  color: green;
 }
 
 #myStartInputX:disabled::-webkit-input-placeholder  {
-  color: linen;
+  color: green;
 }
