@@ -3,6 +3,7 @@ import Node from './Node/Node';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 
+
 import './PathfindingVisualizer.css';
 
 
@@ -21,7 +22,8 @@ export default class PathfindingVisualizer extends Component {
     this.handleChange = this.handleChange.bind(this);
     createNode = createNode.bind(this);
     this.visualizeDijkstra = this.visualizeDijkstra.bind(this)
-    this.handleEndChange = this.handleEndChange.bind(this)
+    this.handleEndChange = this.handleEndChange.bind(this)  
+    this.myFunction = this.myFunction.bind(this)
   }
 
 
@@ -109,9 +111,14 @@ export default class PathfindingVisualizer extends Component {
     )
   }
 
-
   
-
+  
+  
+  
+   myFunction() {
+    const popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
   visualizeDijkstra() {
     this.setState({isDisabled: true})
     const {grid} = this.state;
@@ -130,6 +137,9 @@ export default class PathfindingVisualizer extends Component {
       <>
       <div className='Nav'>
         <div className='buttons'>
+        <div class="popup" onclick={this.myFunction()}>Click me to toggle the popup!
+          <span class="popuptext" id="myPopup">A Simple Popup!</span>
+        </div>
           <img  src={require('../docs/Greygo.png')} alt="" width = "80" height = "auto"/>
           <button className='viz' onClick={() => this.visualizeDijkstra()}>
            Visualize Dijkstra's 
@@ -212,7 +222,6 @@ const getInitialGrid = () => {
   }
   return grid;
 };
-
 
 function createNode(col, row) {
   return {
