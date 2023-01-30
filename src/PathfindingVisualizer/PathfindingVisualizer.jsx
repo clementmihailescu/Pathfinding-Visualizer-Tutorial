@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Node from './Node/Node';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FaExclamation } from '@fortawesome/free-regular-svg-icons';
+import { faCoffee, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 import './PathfindingVisualizer.css';
@@ -134,11 +134,13 @@ export default class PathfindingVisualizer extends Component {
       <div className='Nav'>
         <div className='buttons'>
           <img  src={require('../docs/Greygo.png')} alt="" width = "80" height = "auto"/>
-          <button className='viz' onClick={() => this.visualizeDijkstra()}>
-           Visualize Dijkstra's 
-          </button>
-        <div class="tooltip"><FontAwesomeIcon icon="FaExclamation" />
-          <span className="tooltiptext">A Simple Popup!</span>
+          <div>
+            <button className='viz' onClick={() => this.visualizeDijkstra()}>
+             Visualize Dijkstra's 
+            </button>
+          <div class="tooltip"><FontAwesomeIcon icon={faExclamationCircle} />
+            <span className="tooltiptext">You can create obstacles by clicking and holding down the mouse on the grid</span>
+          </div>
         </div>
           <button className='reload'  onClick={() => this.reset()}>
             Reset
