@@ -164,9 +164,8 @@ img{
 .tooltip {
   position: relative;
   display: inline-block;
-  /* border-bottom: 1px dotted black; */
   content: "\0021";
-  color:linen;
+  color:linen; 
 }
 
 

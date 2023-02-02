@@ -151,13 +151,11 @@ export default class PathfindingVisualizer extends Component {
         <div className='startAxis'>
             <form className=''>
               <label className='labelStartX'>
-                {/* X: */}
                 <input  disabled={this.state.isDisabled} placeholder='X' id="myStartInputX" type='number' max="49" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleChange}/>
               </label>
             </form>
             <form>
               <label className='labelStartY'>
-                 {/* Y:  */}
                 <input disabled={this.state.isDisabled} placeholder='Y'  id="myStartInputY" type='number' max="19" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleChange}/>
               </label>
             </form> 
@@ -165,13 +163,11 @@ export default class PathfindingVisualizer extends Component {
         <div className='endAxis'>
             <form>
               <label className='labelX'>
-                 {/* X:  */}
                 <input disabled={this.state.isDisabled} placeholder='X'  id="myEndInputX" type='number' max="49" min="0" onkeyup="if(value<0)value=0;" onChange={this. handleEndChange}/>
               </label>
             </form>
             <form>
               <label className='labelY'>
-                 {/* Y:  */}
                 <input disabled={this.state.isDisabled} placeholder='Y'  id="myEndInputY" type='number' max="19" min="0" onkeyup="if(value<0)value=0;" onChange={this.handleEndChange}/>
               </label>
             </form>
